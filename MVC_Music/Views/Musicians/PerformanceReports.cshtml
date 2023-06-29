@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MVC_Music.ViewModels.PerformancesReportVM>
+
+@{
+    ViewData["Title"] = "Performance Reports";
+}
+
+<h2>Performance Reports</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>  <--- We delete the Create action because is a report only
+</p>*@
+
+
+<p>
+    <a asp-action="DownloadPerformances" class="btn btn-info float-end">Download Performances Report</a>
+</p>
+
+<br />
+<br />
+
+<form asp-controller="Musicians" asp-action="PerformanceReports" method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FormalName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalPerformances)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AverageFee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HighestFee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LowestFee)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FormalName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPerformances)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AverageFee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HighestFee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LowestFee)
+                    </td>
+                    @*<td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> | <--- No CRUD operations, because is a report only
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <partial name="_PagingNavBar" />
+</form>
